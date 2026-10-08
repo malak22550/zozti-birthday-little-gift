@@ -1,0 +1,461 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --cream: #f6eddd;
+  --paper: #fff9ed;
+  --ink: #2f2b25;
+  --green: #59694e;
+  --pink: #c7838f;
+  --deep: #21151f;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: "Montserrat", sans-serif;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,.75), transparent 25%),
+    radial-gradient(circle at 85% 70%, rgba(211,170,160,.28), transparent 28%),
+    linear-gradient(135deg, #eadbc9 0%, #f7efe2 48%, #e8d7c6 100%);
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::before {
+  opacity: .28;
+  background-image:
+    radial-gradient(circle at 20% 15%, #b47e75 0 2px, transparent 3px),
+    radial-gradient(circle at 80% 25%, #8e9b79 0 2px, transparent 3px),
+    radial-gradient(circle at 65% 80%, #b47e75 0 2px, transparent 3px);
+  background-size: 120px 120px, 160px 160px, 190px 190px;
+}
+
+body::after {
+  background:
+    linear-gradient(90deg, transparent 0 12%, rgba(120,95,70,.06) 12.2% 12.5%, transparent 12.7% 87%, rgba(120,95,70,.06) 87.2% 87.5%, transparent 87.7%),
+    linear-gradient(0deg, transparent 0 88%, rgba(120,95,70,.05) 88.2% 88.6%, transparent 88.8%);
+}
+
+.page {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 46px 0 24px;
+}
+
+.hero {
+  min-height: 650px;
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  align-items: center;
+  gap: 55px;
+}
+
+.hero-copy {
+  padding: 35px 15px 35px 45px;
+}
+
+.eyebrow,
+.note-label,
+.track-info > span {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .28em;
+  color: #6d7562;
+}
+
+h1 {
+  margin-top: 13px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(70px, 8vw, 122px);
+  line-height: .72;
+  font-weight: 600;
+  letter-spacing: -.055em;
+}
+
+h1 em {
+  font-size: .55em;
+  color: var(--pink);
+  font-weight: 400;
+}
+
+.intro {
+  margin: 35px 0 28px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 21px;
+  line-height: 1.35;
+  color: #61584f;
+}
+
+.play-button,
+.anghami-button {
+  border: 0;
+  text-decoration: none;
+  cursor: pointer;
+  font: 600 12px "Montserrat", sans-serif;
+  letter-spacing: .08em;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.play-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  color: #fffaf0;
+  background: var(--green);
+  border-radius: 999px;
+  box-shadow: 0 9px 25px rgba(56,69,46,.18);
+}
+
+.play-button:hover,
+.anghami-button:hover {
+  transform: translateY(-3px);
+}
+
+.play-icon {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,.16);
+  font-size: 9px;
+}
+
+.hint {
+  margin-top: 13px;
+  font-size: 10px;
+  color: #81776d;
+}
+
+.cassette-scene {
+  position: relative;
+  min-height: 540px;
+  display: grid;
+  place-items: center;
+}
+
+.cassette {
+  position: relative;
+  width: min(650px, 90%);
+  aspect-ratio: 1.55;
+  padding: 13% 11% 11%;
+  border-radius: 25px;
+  background:
+    linear-gradient(145deg, #d7dfc8, #aab59c);
+  border: 2px solid rgba(81,89,67,.25);
+  box-shadow:
+    0 30px 55px rgba(72,55,42,.20),
+    inset 0 2px 0 rgba(255,255,255,.75);
+  transform: rotate(-1.2deg);
+  animation: float 5s ease-in-out infinite;
+}
+
+.cassette::before {
+  content: "";
+  position: absolute;
+  inset: 7% 7%;
+  border-radius: 18px;
+  border: 1px solid rgba(80,90,65,.2);
+  background:
+    radial-gradient(circle at 20% 25%, rgba(255,255,255,.5), transparent 3%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,.5), transparent 3%),
+    #dce2d0;
+}
+
+.cassette-label {
+  position: relative;
+  z-index: 2;
+  margin: 0 auto 13px;
+  width: 42%;
+  padding: 7px 4px;
+  text-align: center;
+  border-radius: 20px;
+  background: #faf3dc;
+  font: 600 11px "Cormorant Garamond", serif;
+  letter-spacing: .08em;
+}
+
+.cassette-window {
+  position: relative;
+  z-index: 2;
+  height: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 0 5%;
+  border-radius: 35px;
+  background: #f4f0de;
+  border: 3px solid #9aa58c;
+  box-shadow: inset 0 3px 6px rgba(50,50,40,.16);
+}
+
+.reel {
+  width: clamp(48px, 7vw, 76px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 7px solid #c4c7af;
+  background:
+    radial-gradient(circle, #655a4f 0 11%, #ece8d4 12% 26%, #8b8777 27% 31%, #e8e3cc 32% 100%);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,.25);
+}
+
+.tape {
+  width: 28%;
+  height: 52%;
+  background: linear-gradient(90deg, #2d2830, #d9d2c5 45%, #302936 55%, #2d2830);
+  border-radius: 4px;
+}
+
+.cassette-flower {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  margin-top: 14px;
+  color: #c17c88;
+  font-size: 28px;
+}
+
+.cassette-line {
+  position: relative;
+  z-index: 2;
+  width: 65%;
+  height: 2px;
+  margin: 4px auto 0;
+  background: rgba(77,88,65,.3);
+}
+
+.cassette-screw {
+  position: absolute;
+  z-index: 4;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #ece8d4;
+  border: 2px solid #7c836f;
+}
+
+.s1 { top: 8%; left: 7%; }
+.s2 { top: 8%; right: 7%; }
+.s3 { bottom: 8%; left: 7%; }
+.s4 { bottom: 8%; right: 7%; }
+
+.note {
+  position: absolute;
+  right: 2%;
+  bottom: 2%;
+  width: min(310px, 42%);
+  padding: 27px 25px;
+  background: #f5e6bc;
+  box-shadow: 0 18px 35px rgba(76,58,41,.16);
+  transform: rotate(2deg);
+  z-index: 5;
+}
+
+.note p {
+  margin-top: 13px;
+  font: 19px/1.35 "Cormorant Garamond", serif;
+}
+
+.note .signature {
+  text-align: right;
+  font-style: italic;
+}
+
+.player-card {
+  width: min(850px, 100%);
+  margin: 0 auto 30px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  align-items: center;
+  gap: 18px;
+  background: rgba(255,249,237,.72);
+  border: 1px solid rgba(92,77,59,.12);
+  box-shadow: 0 18px 45px rgba(78,58,42,.10);
+  backdrop-filter: blur(8px);
+}
+
+.album-art {
+  position: relative;
+  width: 100px;
+  height: 80px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  color: #fff4f3;
+  background: linear-gradient(135deg, #2a1729, #57364e);
+}
+
+.flower {
+  position: absolute;
+  font-size: 42px;
+  animation: sway 3s ease-in-out infinite;
+}
+
+.flower-1 { left: 18px; top: 14px; }
+.flower-2 { right: 15px; top: -4px; animation-delay: .5s; }
+.flower-3 { left: 39px; bottom: -12px; animation-delay: 1s; }
+
+.track-info h2 {
+  margin-top: 5px;
+  font: 600 27px "Cormorant Garamond", serif;
+}
+
+.track-info p {
+  margin-top: 2px;
+  font-size: 11px;
+  color: #7a7168;
+}
+
+.anghami-button {
+  padding: 13px 17px;
+  border-radius: 999px;
+  color: #fff;
+  background: #59694e;
+}
+
+footer {
+  padding: 12px 0 28px;
+  text-align: center;
+  font: 15px "Cormorant Garamond", serif;
+  color: #786d62;
+}
+
+.petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.petals::before,
+.petals::after {
+  content: "✿  ❀  ✾  ❁";
+  position: absolute;
+  top: -30px;
+  left: 8%;
+  color: rgba(196,127,141,.35);
+  font-size: 20px;
+  word-spacing: 80px;
+  animation: fall 14s linear infinite;
+}
+
+.petals::after {
+  left: 60%;
+  animation-duration: 18s;
+  animation-delay: -7s;
+  font-size: 15px;
+}
+
+@keyframes float {
+  0%, 100% { transform: rotate(-1.2deg) translateY(0); }
+  50% { transform: rotate(-1.2deg) translateY(-10px); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-5deg) scale(1); }
+  50% { transform: rotate(5deg) scale(1.06); }
+}
+
+@keyframes fall {
+  from { transform: translateY(-10vh) rotate(0deg); }
+  to { transform: translateY(115vh) rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-top: 15px;
+  }
+
+  .hero-copy {
+    text-align: center;
+    padding: 25px 10px 10px;
+  }
+
+  .cassette-scene {
+    min-height: 500px;
+  }
+
+  .note {
+    right: 5%;
+  }
+
+  .player-card {
+    grid-template-columns: 80px 1fr;
+  }
+
+  .album-art {
+    width: 80px;
+    height: 70px;
+  }
+
+  .anghami-button {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .page {
+    width: min(100% - 20px, 520px);
+    padding-top: 20px;
+  }
+
+  h1 {
+    font-size: 76px;
+  }
+
+  .intro {
+    font-size: 18px;
+    margin: 25px 0;
+  }
+
+  .cassette-scene {
+    min-height: 430px;
+  }
+
+  .cassette {
+    width: 100%;
+  }
+
+  .note {
+    width: 55%;
+    padding: 18px;
+  }
+
+  .note p {
+    font-size: 15px;
+  }
+
+  .player-card {
+    grid-template-columns: 70px 1fr;
+    gap: 12px;
+  }
+
+  .album-art {
+    width: 70px;
+    height: 65px;
+  }
+
+  .track-info h2 {
+    font-size: 23px;
+  }
+}
